@@ -35,7 +35,7 @@ module.exports = function (grunt) {
       // freeze options so they can't be changed
       Object.freeze(options);
 
-      console.log(`cropthumb task started`, options);
+      grunt.log.writeln(`cropthumb task started`, options);
       if (options.width === null && options.height === null) {
         return grunt.fail.fatal(
           "You must specify either a width or a height for the thumbnail."
@@ -132,8 +132,8 @@ module.exports = function (grunt) {
               .quality(95)
               .write(dest_file, function (err) {
                 if (err) {
-                  grunt.log.error("error creating cropthumb");
-                  console.error(err);
+                  grunt.log.error(`error creating cropthumb ${dest_file}`);
+                  grunt.log.error(err);
                   callback(err);
                 } else {
                   grunt.log.writeln('Cropthumb "' + dest_file + '" created.');
